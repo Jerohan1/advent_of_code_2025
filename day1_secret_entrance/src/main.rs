@@ -1,12 +1,12 @@
 use std::io::{self, Read};
 
 fn main() {
-
     let mut dial: i32 = 50;
     let mut pass: i32 = 0;
     let mut input: String = String::new();
 
-    io::stdin().read_to_string(&mut input)
+    io::stdin()
+        .read_to_string(&mut input)
         .expect("Failed to read line");
 
     let lines: Vec<&str> = input.lines().collect();
@@ -16,7 +16,7 @@ fn main() {
     for movement in lines {
         let direction: &str = &movement[0..1];
         let distance: &i32 = &movement[1..].parse().expect("Not a number");
-        
+
         let turns: i32 = distance / 100;
         pass += turns;
         let travel: i32 = distance % 100;
@@ -46,7 +46,6 @@ fn main() {
         if dial == 0 {
             pass += 1;
         }
-
 
         println!("Direction: {direction}, distance {turns} {travel}, dial {dial}, pass {pass}");
     }
